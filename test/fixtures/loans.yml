@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrower_id: 1
+  lender_id: 1
+  amount: MyString
+  body: MyString
+  status: MyString
+  term: 2017-11-07
+
+two:
+  borrower_id: 1
+  lender_id: 1
+  amount: MyString
+  body: MyString
+  status: MyString
+  term: 2017-11-07
