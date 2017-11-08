@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
+
+  resource :sessions
   resources :users
   resources :loans
-
-  root 'rails#cool'
 
   get '/cool' => 'rails#cool'
   get '/sweet' => 'rails#sweet'
