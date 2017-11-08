@@ -2,28 +2,35 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
+body {
+	background-color: #FFA100;
+	margin: 0;
+	padding: 0;
+}
+
+h1#signup {
+	text-align:center;
 	color: blue;
 }
 
 .container {
 	background-color: #FFA100;
-}
-
-html {
-	background-color: #FFA100;
+	margin: 0;
+	padding: 0;
 }
 
 form {
-	padding-left: 100px;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
 input, select {
-	font-size: 35px;
+	
 }
 
 #signup-logo {
-	margin-top: 100px;
-	margin-left: 200px;
-	width: 300px;
+	width: 200px;
+	display: block;
+    margin-left: auto;
+    margin-right: auto
 }
