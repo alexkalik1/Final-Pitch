@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.text_field :type_of_user, id: :user_type_of_user %>
+    <%= form.select :role, options_for_select( User.roles.keys.to_a, :disabled => "Admin") %>
   </div>
 
   <div class="field">
