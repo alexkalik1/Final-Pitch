@@ -1,5 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<% if current_user.Lender? %>
+  <%= link_to "INVEST", '/loans#index' %>
+<% end %>
+
+<% if current_user.Borrower? %>
+  <%= link_to "REQUEST", '/loans/new' %>
+<% end %>
+
 <p>
   <strong>First name:</strong>
   <%= @user.first_name %>
@@ -17,13 +25,7 @@
 
 <p>
   <strong>Type of user:</strong>
-  <%= @user.type_of_user %>
+  <%= @user.role %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
