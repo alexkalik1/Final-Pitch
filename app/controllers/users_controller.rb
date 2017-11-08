@@ -26,12 +26,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
-      session[:user_id] = user.id
-      redirect_to '/'
-    else
-      redirect_to '/signup'
-    end
+    return render action: 'new' unless @user.save
+
+    redirect_to root_path, notice: 'Created user'
   end
 
   # PATCH/PUT /users/1
@@ -66,6 +63,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :type_of_user, :password_digest)
+      params.require(:user).permit(:first_name, :last_name, :email, :type_of_user, :username, :password, :password_confirmation)
     end
 end
