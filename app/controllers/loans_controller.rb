@@ -5,6 +5,7 @@ class LoansController < ApplicationController
   # GET /loans.json
   def index
     @loans = Loan.all
+    # @user = User.find(params[:id])
   end
 
   # GET /loans/1
