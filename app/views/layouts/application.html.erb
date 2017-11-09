@@ -11,11 +11,21 @@
 
   <body>
 
+<<<<<<< HEAD
    <!--  <% if current_user %> -->
       <!-- Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %> -->
      <!-- <% else %> -->
       <!-- <%= link_to 'Login', root_path %> | <%= link_to 'Signup', 'users#new' %> -->
     <!-- <% end %> -->
+=======
+    <header>
+      <% if current_user %>
+        Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
+      <% else %>
+        <%= link_to 'Login', root_path %> | <%= link_to 'Signup', '/users/new' %>
+      <% end %>      
+    </header>
+>>>>>>> 7d50f3753f0ed95c83a7216c3656ff8562d65869
 
     <%= yield %>
   </body>
