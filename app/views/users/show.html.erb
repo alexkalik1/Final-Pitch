@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
-<% if current_user.Lender? %>
+<% if @user.role == "Lender" %>
   <%= link_to "INVEST", '/loans#index' %>
 <% end %>
 
-<% if current_user.Borrower? %>
+<% if @user.role == "Borrower" %>
   <%= link_to "REQUEST", '/loans/new' %>
 <% end %>
 
