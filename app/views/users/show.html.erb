@@ -1,31 +1,35 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>  <!-- What is this for? -->
+
+<div class='container'>
+<img class='user-img img-responsive' src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg">
+<h3 class="uname">
+  <strong>Welcome <%= @user.first_name + ' ' + @user.last_name %></strong><br>
+  <strong>Type of user: <%= @user.role %></strong>
+</h3>
 
 <% if @user.role == "Lender" %>
-  <%= link_to "INVEST", '/loans#index' %>
+  <button type="button" class="btn btn-primary btn-lg to-loan"><%= link_to "INVEST", '/loans#index' %></button> 
 <% end %>
 
 <% if @user.role == "Borrower" %>
-  <%= link_to "REQUEST", '/loans/new' %>
+  <button type="button" class="btn btn-primary btn-lg to-loan" href="#"><%= link_to "NEW REQUEST", '/loans/new' %></button> 
 <% end %>
+ </div>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Active <span class="badge">0</span></div>
+    <div class="panel-body">
+      <ul><li>1 table</li><li>2 table</li><li>3 table</li></ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Pending <span class="badge">0</span></div>
+    <div class="panel-body">
+      <ul><li>1 table</li><li>2 table</li><li>3 table</li></ul>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Type of user:</strong>
-  <%= @user.role %>
-</p>
-
-<%= link_to 'Back', users_path %>

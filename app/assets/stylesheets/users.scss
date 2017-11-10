@@ -2,12 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-body {
-	background-color: #FFA100;
-	margin: 0;
-	padding: 0;
-}
-
 h1#signup {
 	text-align:center;
 	color: blue;
@@ -15,8 +9,6 @@ h1#signup {
 
 .container {
 	background-color: #FFA100;
-	margin: 0;
-	padding: 0;
 }
 
 form {
@@ -33,4 +25,34 @@ input, select {
 	display: block;
     margin-left: auto;
     margin-right: auto
+}
+
+.user-img {
+	width: 50%;
+	margin: 10% auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.uname {
+	text-align: center;
+}
+
+.to-loan {
+	margin: 10% auto 10px;
+	margin-bottom: 0;
+    display: block;
+}
+
+button.btn {
+	background-color: white;
+	display: block;
+	margin-bottom: 20px;
+}
+
+span.badge {
+	color: #FFA100;
+	background-color: blue;
 }
