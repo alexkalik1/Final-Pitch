@@ -25,7 +25,8 @@ class LoansController < ApplicationController
   # POST /loans
   # POST /loans.json
   def create
-    @loan = Loan.new(loan_params)
+    @user = User.find(current_user.id)
+    @loan = @user.loans.new(loan_params)
 
     respond_to do |format|
       if @loan.save
@@ -70,6 +71,6 @@ class LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params
-      params.require(:loan).permit(:amount_in_cents, :body, :status)
+      params.require(:loan).permit(:amount_in_cents, :body, :status, :lender_id)
     end
 end
