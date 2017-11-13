@@ -11,6 +11,8 @@ gem 'rails', '~> 5.1.4'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'pg'
+
+gem 'dwolla_v2'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 # Use Puma as the app server
