@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     return render action: 'new' unless @user
 
     session[:user_id] = @user.id
-    redirect_to loans_path
+    redirect_to user_path(@user)
   end
 
   def destroy

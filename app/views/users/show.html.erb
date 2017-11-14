@@ -1,31 +1,97 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>  <!-- What is this for? -->
+<%= link_to "Logout", '/logout' %>
 
-<% if current_user.Lender? %>
-  <%= link_to "INVEST", '/loans#index' %>
+<div class='container'>
+<% if @user.role == "Lender" %>
+<img class='user-img img-responsive' src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg">
 <% end %>
 
-<% if current_user.Borrower? %>
-  <%= link_to "REQUEST", '/loans/new' %>
+<% if @user.role == "Borrower" %>
+<img class='user-img img-responsive' src="https://assets.entrepreneur.com/content/3x2/1300/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg">
 <% end %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<h3 class="uname">
+  <strong>Welcome <%= @user.first_name + ' ' + @user.last_name %></strong><br>
+  <strong>Type of user: <%= @user.role %></strong>
+</h3>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+<% if @user.role == "Lender" %>
+  <button type="button" class="btn btn-primary btn-lg to-loan"><%= link_to "INVEST", '/loans#index' %></button> 
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<% if @a_count > 0 %>
+    <div class="container">
+      <h2>Active <span class="badge"><%= @a_count %></span></h2>
+                                                                                            
+      <div class="table">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Body</th>
+            <th colspan="2"></th>
 
-<p>
-  <strong>Type of user:</strong>
-  <%= @user.role %>
-</p>
 
-<%= link_to 'Back', users_path %>
+            <!-- <th>City</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @lender_loans.each do |loan| %>
+            <% if loan.lender_id == current_user.id && User.find(current_user.id).role == "Lender" && loan.status == "Active" %>
+                      <tr>
+                        <td><%= loan.amount_in_cents %></td>
+                        <td><%= loan.body %></td>
+                        <td><%= loan.status %></td>
+                        <!-- <td>User.find(loan.user_id).first_name</td> -->
+<!--                         <td><%= link_to 'Show', loan %></td>
+ -->                        <td><%= link_to 'View - fix link', edit_loan_path(loan) %></td>
+                      </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @c_count > 0 %>
+    <div class="container">
+      <h2>Active <span class="badge"><%= @c_count %></span></h2>
+                                                                                            
+      <div class="table">          
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Body</th>
+            <th colspan="2"></th>
+
+
+            <!-- <th>City</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <% @lender_loans.each do |loan| %>
+            <% if loan.lender_id == current_user.id && User.find(current_user.id).role == "Lender" && loan.status == "Active" %>
+                      <tr>
+                        <td><%= loan.amount_in_cents %></td>
+                        <td><%= loan.body %></td>
+                        <td><%= loan.status %></td>
+                        <!-- <td>User.find(loan.user_id).first_name</td> -->
+<!--                         <td><%= link_to 'Show', loan %></td>
+ -->                        <td><%= link_to 'View - fix link', edit_loan_path(loan) %></td>
+                      </tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  <% end %>
+
+<% end %>
+
+
+<% if @user.role == "Borrower" %>
+  <button type="button" class="btn btn-primary btn-lg to-loan" href="#"><%= link_to "NEW REQUEST", '/loans/new' %></button> 
+<% end %>
+ </div>
