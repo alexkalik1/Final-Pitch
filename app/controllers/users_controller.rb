@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @p_count = 0 #count of pending loans
     @a_count = 0 #count of active loans
     @c_count = 0 #count of completed loans
-    
+
     @lender_loans.each do |pending|
       if pending.status == "Pending"
         @p_count = @p_count + 1
@@ -50,6 +50,15 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     return render action: 'new' unless @user.save
+
+    require 'dwolla_v2'
+
+    request_body = {
+      :firstName => @user.first_name,
+      :lastName => @user.last_name,
+      :email => @user.email
+    }
+    customer = $dwolla.auths.client.post "customers", request_body
 
     redirect_to user_path(@user), notice: 'Created user'
   end
