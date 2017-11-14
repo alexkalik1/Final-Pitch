@@ -6,6 +6,28 @@ class LoansController < ApplicationController
   def index
     @loans = Loan.all
     # @user = User.find(params[:id])
+    @all_loans = User.find(current_user.id).loans
+    @p_count = 0 #count of pending loans
+    @a_count = 0 #count of active loans
+    @c_count = 0 #count of completed loans
+    @all_loans.each do |pending|
+      if pending.status == "Pending"
+        @p_count = @p_count + 1
+      end
+    end
+
+    @all_loans.each do |pending|
+      if pending.status == "Active"
+        @a_count = @a_count + 1
+      end
+    end
+
+    @all_loans.each do |pending|
+      if pending.status == "Completed"
+        @c_count = @c_count + 1
+      end
+    end
+
   end
 
   # GET /loans/1

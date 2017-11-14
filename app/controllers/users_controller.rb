@@ -11,6 +11,28 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @lender_loans = Loan.where(lender_id: current_user.id)
+    @p_count = 0 #count of pending loans
+    @a_count = 0 #count of active loans
+    @c_count = 0 #count of completed loans
+    
+    @lender_loans.each do |pending|
+      if pending.status == "Pending"
+        @p_count = @p_count + 1
+      end
+    end
+
+    @lender_loans.each do |active|
+      if active.status == "Active"
+        @a_count = @a_count + 1
+      end
+    end
+
+    @lender_loans.each do |completed|
+      if completed.status == "Completed"
+        @c_count = @c_count + 1
+      end
+    end
   end
 
   # GET /users/new
