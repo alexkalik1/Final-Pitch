@@ -39,6 +39,36 @@
                     </div>
 
                     <div class="field">
+                      <%= form.label :address %>
+                      <%= form.text_field :address, id: :user_address, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :city %>
+                      <%= form.text_field :city, id: :user_city, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :state %>
+                      <%= form.text_field :state, id: :user_state, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :postal_code %>
+                      <%= form.text_field :postal_code, id: :user_postal_code, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :date_of_birth %> (YYYY-MM-DD)
+                      <%= form.text_field :date_of_birth, id: :user_date_of_birth, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :last_four_of_ssn %>
+                      <%= form.text_field :last_four_of_ssn, id: :user_last_four_of_ssn, class: "form-control" %>
+                    </div>
+
+                    <div class="field">
                       <%= form.label :role %>
                       <%= form.select :role, ['','Lender', 'Borrower'], class: "form-control" %>
 
