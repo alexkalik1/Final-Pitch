@@ -10,7 +10,7 @@ class LoansController < ApplicationController
     @p_count = 0 #count of pending loans
     @a_count = 0 #count of active loans
     @c_count = 0 #count of completed loans
-    @all_loans.each do |pending|
+    @loans.each do |pending|
       if pending.status == "Pending"
         @p_count = @p_count + 1
       end
