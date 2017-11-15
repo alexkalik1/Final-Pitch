@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171114213511) do
   create_table "loans", force: :cascade do |t|
     t.integer "amount_in_cents"
     t.string "body"
-    t.string "status"
+    t.string "status", default: "Pending"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
