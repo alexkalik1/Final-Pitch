@@ -1,5 +1,6 @@
 class LoansController < ApplicationController
   before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  after_action :http_request, only: :update
 
   # GET /loans
   # GET /loans.json
@@ -33,7 +34,7 @@ class LoansController < ApplicationController
   # GET /loans/1
   # GET /loans/1.json
   def show
-    @invester = User.find(current_user.id)
+    @invester = User.find(@loan.user.id)
   end
 
   # GET /loans/new
@@ -44,63 +45,6 @@ class LoansController < ApplicationController
   # GET /loans/1/edit
   def edit
 
-    if @loan.save
-
-      require 'dwolla_v2'
-
-      customers = $dwolla.auths.client.get "customers"
-
-      source = ""
-      href = ""
-
-      borrower = User.find(@loan.user.id)
-      # Get borrower href
-      customers._embedded.customers.each do |transfer|
-        if transfer.email == borrower.email
-          href = transfer._links.self.href
-        end
-      end
-
-      
-      invester = User.find(current_user.id)
-      # Get lender source
-      customers._embedded.customers.each do |transfer|
-        if transfer.email == invester.email
-          this_href = transfer._links.self.href
-          
-          customer_url = "#{this_href}/funding-sources"
-          
-
-          funding_source = $dwolla.auths.client.get customer_url
-          source = funding_source._embedded['funding-sources'][0]._links.self.href
-        end
-      end
-
-      request_body = {
-        :_links => {
-          :source => {
-            :href => source
-          },
-          :destination => {
-            :href => href
-          }
-        },
-        :amount => {
-          :currency => "USD",
-          :value => "#{@loan.amount_in_cents/100}"
-        },
-        :metadata => {
-          :paymentId => "12345678",
-          :note => "ITS WORKINNGGGGGGG"
-        },
-        :clearing => {
-          :destination => "next-available"
-        },
-        :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
-      }
-
-      transfer = $dwolla.auths.client.post "transfers", request_body
-    end
   end
 
   # POST /loans
@@ -148,6 +92,68 @@ class LoansController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_loan
       @loan = Loan.find(params[:id])
+    end
+
+    def http_request
+
+      if @loan.save
+
+        require 'dwolla_v2'
+
+        customers = $dwolla.auths.client.get "customers"
+        #
+        source = ""
+        href = ""
+
+        borrower = User.find(@loan.user.id)
+        # Get borrower href
+        customers._embedded.customers.each do |transfer|
+          if transfer.email == borrower.email
+            href = transfer._links.self.href
+          end
+        end
+
+
+        invester = User.find(current_user.id)
+        # Get lender source
+        customers._embedded.customers.each do |transfer|
+          if transfer.email == invester.email
+            this_href = transfer._links.self.href
+
+            customer_url = "#{this_href}/funding-sources"
+
+
+            funding_source = $dwolla.auths.client.get customer_url
+            source = funding_source._embedded['funding-sources'][0]._links.self.href
+          end
+        end
+
+        request_body = {
+          :_links => {
+            :source => {
+              :href => source
+            },
+            :destination => {
+              :href => href
+            }
+          },
+          :amount => {
+            :currency => "USD",
+            :value => "#{@loan.amount_in_cents/100}"
+          },
+          :metadata => {
+            :paymentId => "12345678",
+            :note => "ITS WORKINNGGGGGGG"
+          },
+          :clearing => {
+            :destination => "next-available"
+          },
+          :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
+        }
+
+        transfer = $dwolla.auths.client.post "transfers", request_body
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
