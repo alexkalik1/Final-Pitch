@@ -100,8 +100,7 @@ class LoansController < ApplicationController
 
     def http_request
 
-      unless current_user.role == "Borrower"
-
+      if current_user.role == "Lender"
         if @loan.save
 
           require 'dwolla_v2'
@@ -146,6 +145,72 @@ class LoansController < ApplicationController
             :amount => {
               :currency => "USD",
               :value => "#{@loan.amount_in_cents/100}"
+            },
+            :metadata => {
+              :paymentId => "12345678",
+              :note => "ITS WORKINNGGGGGGG"
+            },
+            :clearing => {
+              :destination => "next-available"
+            },
+            :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
+          }
+
+          transfer = $dwolla.auths.client.post "transfers", request_body
+        end
+
+      elsif current_user.role == "Borrower" && @loan.status == "Closed"
+
+        if @loan.save
+
+          require 'dwolla_v2'
+
+          customers = $dwolla.auths.client.get "customers"
+          #
+          repay_source = ""
+          this_href = ""
+
+          borrower = User.find(@loan.user.id)
+          # Get borrower href
+          customers._embedded.customers.each do |transfer|
+            if transfer.email == borrower.email
+              href = transfer._links.self.href
+
+              borrower_url = "#{href}/funding-sources"
+              repay_funds = $dwolla.auths.client.get borrower_url
+              repay_source = repay_funds._embedded['funding-sources'][0]._links.self.href
+            end
+          end
+
+          invester_id = @loan.lender_id
+          invester = User.find(invester_id)
+          # Get lender source
+          customers._embedded.customers.each do |transfer|
+            if transfer.email == invester.email
+              this_href = transfer._links.self.href
+
+              customer_url = "#{this_href}/funding-sources"
+
+
+              funding_source = $dwolla.auths.client.get customer_url
+              source = funding_source._embedded['funding-sources'][0]._links.self.href
+            end
+          end
+
+          amount = ((@loan.amount_in_cents/100) * 1.05)
+
+          request_body = {
+            :_links => {
+              :source => {
+                :href => repay_source
+              },
+              :destination => {
+                :href => this_href
+              }
+            },
+            :amount => {
+              :currency => "USD",
+              :value => "#{amount}"
             },
             :metadata => {
               :paymentId => "12345678",
