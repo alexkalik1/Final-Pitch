@@ -96,64 +96,66 @@ class LoansController < ApplicationController
 
     def http_request
 
-      if @loan.save
+      unless current_user.role == "Borrower"
 
-        require 'dwolla_v2'
+        if @loan.save
 
-        customers = $dwolla.auths.client.get "customers"
-        #
-        source = ""
-        href = ""
+          require 'dwolla_v2'
 
-        borrower = User.find(@loan.user.id)
-        # Get borrower href
-        customers._embedded.customers.each do |transfer|
-          if transfer.email == borrower.email
-            href = transfer._links.self.href
+          customers = $dwolla.auths.client.get "customers"
+          #
+          source = ""
+          href = ""
+
+          borrower = User.find(@loan.user.id)
+          # Get borrower href
+          customers._embedded.customers.each do |transfer|
+            if transfer.email == borrower.email
+              href = transfer._links.self.href
+            end
           end
-        end
 
 
-        invester = User.find(current_user.id)
-        # Get lender source
-        customers._embedded.customers.each do |transfer|
-          if transfer.email == invester.email
-            this_href = transfer._links.self.href
+          invester = User.find(current_user.id)
+          # Get lender source
+          customers._embedded.customers.each do |transfer|
+            if transfer.email == invester.email
+              this_href = transfer._links.self.href
 
-            customer_url = "#{this_href}/funding-sources"
+              customer_url = "#{this_href}/funding-sources"
 
 
-            funding_source = $dwolla.auths.client.get customer_url
-            source = funding_source._embedded['funding-sources'][0]._links.self.href
+              funding_source = $dwolla.auths.client.get customer_url
+              source = funding_source._embedded['funding-sources'][0]._links.self.href
+            end
           end
-        end
 
-        request_body = {
-          :_links => {
-            :source => {
-              :href => source
+          request_body = {
+            :_links => {
+              :source => {
+                :href => source
+              },
+              :destination => {
+                :href => href
+              }
             },
-            :destination => {
-              :href => href
-            }
-          },
-          :amount => {
-            :currency => "USD",
-            :value => "#{@loan.amount_in_cents/100}"
-          },
-          :metadata => {
-            :paymentId => "12345678",
-            :note => "ITS WORKINNGGGGGGG"
-          },
-          :clearing => {
-            :destination => "next-available"
-          },
-          :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
-        }
+            :amount => {
+              :currency => "USD",
+              :value => "#{@loan.amount_in_cents/100}"
+            },
+            :metadata => {
+              :paymentId => "12345678",
+              :note => "ITS WORKINNGGGGGGG"
+            },
+            :clearing => {
+              :destination => "next-available"
+            },
+            :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
+          }
 
-        transfer = $dwolla.auths.client.post "transfers", request_body
+          transfer = $dwolla.auths.client.post "transfers", request_body
+        end
       end
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
