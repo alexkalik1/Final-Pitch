@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users
   resources :loans
+  get '/loans/:id/repay' => 'loans#repay', :as => :repay_loans
 
   # get '/cool' => 'rails#cool'
   # get '/sweet' => 'rails#sweet'
@@ -15,6 +16,6 @@ Rails.application.routes.draw do
   # get '/login' => 'sessions#new'
   get '/logout' => 'sessions#destroy'
   get '/login' => 'sessions#create'
-  
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

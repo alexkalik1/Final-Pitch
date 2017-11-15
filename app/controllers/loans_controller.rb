@@ -1,5 +1,5 @@
 class LoansController < ApplicationController
-  before_action :set_loan, only: [:show, :edit, :update, :destroy]
+  before_action :set_loan, only: [:show, :edit, :update, :destroy, :repay]
   after_action :http_request, only: :update
 
   # GET /loans
@@ -44,6 +44,10 @@ class LoansController < ApplicationController
 
   # GET /loans/1/edit
   def edit
+
+  end
+
+  def repay
 
   end
 

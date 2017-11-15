@@ -1,0 +1,27 @@
+<h1>Repayment</h1>
+
+<% fee = sprintf("$%.2f", ((@loan.amount_in_cents/100) * 0.05)) %>
+<% og_loan = sprintf("$%.2f", (@loan.amount_in_cents/100)) %>
+
+<% total = sprintf("$%.2f", ((@loan.amount_in_cents/100) * 1.05)) %>
+
+<p>
+  Loan Amount: <%= og_loan %>
+</p>
+
+<p>
+  Interest Fee (5%): <%= fee %>
+</p>
+
+<p>
+  Total: <%= total %>
+</p>
+
+<% if User.find(current_user.id).role == "Borrower" %>
+	<%= form_for @loan do |form| %>
+
+	    <%= form.hidden_field(:status, :value => "Active") %>
+
+	    <%= form.submit "Repay" %>
+	<% end %>
+<% end %>
