@@ -99,132 +99,31 @@ class LoansController < ApplicationController
     end
 
     def http_request
+      redirect_to :back, notice: "Payment Failed" and return unless @loan.save
+      client = Dwolla.new
+      borrower = User.find(@loan.user.id)
+      invester = User.find(@loan.lender_id)
 
       if current_user.role == "Lender"
-        if @loan.save
 
-          require 'dwolla_v2'
+        # Get borrower href
+        to = client.find_url(borrower.email)
+        # Get lender source
+        from = client.find_funding_source_url(invester.email)
 
-          customers = $dwolla.auths.client.get "customers"
-          #
-          source = ""
-          href = ""
-
-          borrower = User.find(@loan.user.id)
-          # Get borrower href
-          customers._embedded.customers.each do |transfer|
-            if transfer.email == borrower.email
-              href = transfer._links.self.href
-            end
-          end
-
-
-          invester = User.find(current_user.id)
-          # Get lender source
-          customers._embedded.customers.each do |transfer|
-            if transfer.email == invester.email
-              this_href = transfer._links.self.href
-
-              customer_url = "#{this_href}/funding-sources"
-
-
-              funding_source = $dwolla.auths.client.get customer_url
-              source = funding_source._embedded['funding-sources'][0]._links.self.href
-            end
-          end
-
-          request_body = {
-            :_links => {
-              :source => {
-                :href => source
-              },
-              :destination => {
-                :href => href
-              }
-            },
-            :amount => {
-              :currency => "USD",
-              :value => "#{@loan.amount_in_cents/100}"
-            },
-            :metadata => {
-              :paymentId => "12345678",
-              :note => "ITS WORKINNGGGGGGG"
-            },
-            :clearing => {
-              :destination => "next-available"
-            },
-            :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
-          }
-
-          transfer = $dwolla.auths.client.post "transfers", request_body
-        end
+        amount = "#{@loan.amount_in_cents/100}"
 
       elsif current_user.role == "Borrower" && @loan.status == "Closed"
 
-        if @loan.save
+        # Get borrower href
+        from = client.find_funding_source_url(borrower.email)
+        # Get lender source
+        to = client.find_url(invester.email)
 
-          require 'dwolla_v2'
+        amount = "#{((@loan.amount_in_cents/100) * 1.05)}"
 
-          customers = $dwolla.auths.client.get "customers"
-          #
-          repay_source = ""
-          this_href = ""
-
-          borrower = User.find(@loan.user.id)
-          # Get borrower href
-          customers._embedded.customers.each do |transfer|
-            if transfer.email == borrower.email
-              href = transfer._links.self.href
-
-              borrower_url = "#{href}/funding-sources"
-              repay_funds = $dwolla.auths.client.get borrower_url
-              repay_source = repay_funds._embedded['funding-sources'][0]._links.self.href
-            end
-          end
-
-          invester_id = @loan.lender_id
-          invester = User.find(invester_id)
-          # Get lender source
-          customers._embedded.customers.each do |transfer|
-            if transfer.email == invester.email
-              this_href = transfer._links.self.href
-
-              customer_url = "#{this_href}/funding-sources"
-
-
-              funding_source = $dwolla.auths.client.get customer_url
-              source = funding_source._embedded['funding-sources'][0]._links.self.href
-            end
-          end
-
-          amount = ((@loan.amount_in_cents/100) * 1.05)
-
-          request_body = {
-            :_links => {
-              :source => {
-                :href => repay_source
-              },
-              :destination => {
-                :href => this_href
-              }
-            },
-            :amount => {
-              :currency => "USD",
-              :value => "#{amount}"
-            },
-            :metadata => {
-              :paymentId => "12345678",
-              :note => "ITS WORKINNGGGGGGG"
-            },
-            :clearing => {
-              :destination => "next-available"
-            },
-            :correlationId => "8a2cdc8d-629d-4a24-98ac-40b735229fe2"
-          }
-
-          transfer = $dwolla.auths.client.post "transfers", request_body
-        end
       end
+      client.send_money(from, to, amount)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
