@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Guaranteed Tip:</strong>
+  <%= sprintf("$%.2f", (@loan.tip_in_cents/100)) %>
+</p>
+
+<p>
   <strong>Description:</strong>
   <%= @loan.body %>
 </p>

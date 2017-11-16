@@ -27,6 +27,7 @@
         <thead>
           <tr>
             <th>Amount</th>
+            <th>Guaranteed Tip</th>
             <th>Body</th>
             <th>Requester</th>
             <th>Status</th>
@@ -41,6 +42,7 @@
             <% if loan.lender_id == current_user.id && User.find(current_user.id).role == "Lender" && loan.status == "Active" %>
                       <tr>
                         <td><%= sprintf("$%.2f", (loan.amount_in_cents/100)) %></td>
+                        <td><%= sprintf("$%.2f", (loan.tip_in_cents/100)) %></td>
                         <td><%= loan.body %></td>
                         <td><%= loan.user.first_name %></td>
                         <td><%= loan.status %></td>
@@ -65,6 +67,7 @@
         <thead>
           <tr>
             <th>Amount</th>
+            <th>Guaranteed Tip</th>
             <th>Body</th>
             <th colspan="2"></th>
 
@@ -77,6 +80,7 @@
             <% if loan.lender_id == current_user.id && User.find(current_user.id).role == "Lender" && loan.status == "Active" %>
                       <tr>
                         <td><%= sprintf("$%.2f", (loan.amount_in_cents/100)) %></td>
+                        <td><%= sprintf("$%.2f", (loan.tip_in_cents/100)) %></td>
                         <td><%= loan.body %></td>
                         <td><%= loan.status %></td>
                         <!-- <td>User.find(loan.user_id).first_name</td> -->

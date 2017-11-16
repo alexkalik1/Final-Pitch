@@ -1,16 +1,18 @@
 <h1>Repayment</h1>
 
-<% fee = sprintf("$%.2f", ((@loan.amount_in_cents/100) * 0.05)) %>
+<% tip = sprintf("$%.2f", (@loan.tip_in_cents/100)) %>
 <% og_loan = sprintf("$%.2f", (@loan.amount_in_cents/100)) %>
 
-<% total = sprintf("$%.2f", ((@loan.amount_in_cents/100) * 1.05)) %>
+<% full_amount = @loan.tip_in_cents + @loan.amount_in_cents %>
+
+<% total = sprintf("$%.2f", (full_amount/100)) %>
 
 <p>
   Loan Amount: <%= og_loan %>
 </p>
 
 <p>
-  Interest Fee (5%): <%= fee %>
+  Guaranteed Tip: <%= tip %>
 </p>
 
 <p>

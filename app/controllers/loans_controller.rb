@@ -120,7 +120,8 @@ class LoansController < ApplicationController
         # Get lender source
         to = client.find_url(invester.email)
 
-        amount = "#{((@loan.amount_in_cents/100) * 1.05)}"
+        full_amount = @loan.tip_in_cents + @loan.amount_in_cents
+        amount = "#{(full_amount/100)}"
 
       end
       client.send_money(from, to, amount)
