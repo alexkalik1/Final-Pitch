@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :loans
   get '/loans/:id/repay' => 'loans#repay', :as => :repay_loans
+  get '/users/:id' => 'users#show', :as => :profile
 
   # get '/cool' => 'rails#cool'
   # get '/sweet' => 'rails#sweet'
