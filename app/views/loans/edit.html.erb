@@ -5,7 +5,7 @@
 <% end %>
 
 <% if User.find(current_user.id).role == "Lender" %>
-	<%= form_for @loan do |form| %>	
+	<%= form_for @loan do |form| %>
 	    <%= form.hidden_field(:lender_id, :value => current_user.id) %>
 	    <%= form.hidden_field(:status, :value => "Active") %>
 

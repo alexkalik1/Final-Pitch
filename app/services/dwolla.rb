@@ -63,6 +63,23 @@ class Dwolla
     transfer = @dwolla.auths.client.post "transfers", request_body
   end
 
+  def create_customer(first_name, last_name, email, type, address, city, state, postal_code, date_of_birth, last_four_of_ssn)
+    request_body = {
+      :firstName => first_name,
+      :lastName => last_name,
+      :email => email,
+      :type => type,
+      :address1 => address,
+      :city => city,
+      :state => state,
+      :postalCode => postal_code,
+      :dateOfBirth => date_of_birth,
+      :ssn => last_four_of_ssn
+    }
+    customer = @dwolla.auths.client.post "customers", request_body
+  end
+
+
 end
 
 

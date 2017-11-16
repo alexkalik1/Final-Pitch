@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @lender_loans = Loan.where(lender_id: current_user.id)
+    @lender_loans = Loan.where(lender_id: @user)
     @p_count = 0 #count of pending loans
     @a_count = 0 #count of active loans
     @c_count = 0 #count of completed loans
@@ -51,22 +51,20 @@ class UsersController < ApplicationController
 
     return render action: 'new' unless @user.save
 
-    require 'dwolla_v2'
+    client = Dwolla.new
 
-    request_body = {
-      :firstName => @user.first_name,
-      :lastName => @user.last_name,
-      :email => @user.email,
-      :type => "personal",
-      :address1 => @user.address,
-      :city => @user.city,
-      :state => @user.state,
-      :postalCode => @user.postal_code,
-      :dateOfBirth => @user.date_of_birth,
-      :ssn => @user.last_four_of_ssn
-    }
-    customer = $dwolla.auths.client.post "customers", request_body
+    first_name = @user.first_name
+    last_name = @user.last_name
+    email = @user.email
+    type = "personal"
+    address = @user.address
+    city = @user.city
+    state = @user.state
+    postal_code = @user.postal_code
+    date_of_birth = @user.date_of_birth
+    last_four_of_ssn = @user.last_four_of_ssn
 
+    client.create_customer(first_name, last_name, email, type, address, city, state, postal_code, date_of_birth, last_four_of_ssn)
     redirect_to user_path(@user), notice: 'Created user'
   end
 
