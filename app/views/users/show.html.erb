@@ -1,15 +1,6 @@
 <p id="notice"><%= notice %></p>  <!-- What is this for? -->
 <%= link_to "Logout", '/logout' %>
 
-<div class='container'>
-<% if @user.role == "Lender" %>
-<img class='user-img img-responsive' src="http://www.american.edu/uploads/profiles/large/chris_palmer_profile_11.jpg">
-<% end %>
-
-<% if @user.role == "Borrower" %>
-<img class='user-img img-responsive' src="https://assets.entrepreneur.com/content/3x2/1300/20150406145944-dos-donts-taking-perfect-linkedin-profile-picture-selfie-mobile-camera-2.jpeg">
-<% end %>
-
 <h3 class="uname">
   <strong>Welcome <%= @user.first_name + ' ' + @user.last_name %></strong><br>
   <strong>Type of user: <%= @user.role %></strong>
@@ -22,7 +13,7 @@
     <div class="container">
       <h2>Active <span class="badge"><%= @a_count %></span></h2>
 
-      <div class="table">
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
