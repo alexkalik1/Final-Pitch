@@ -21,11 +21,21 @@
 </p>
 
 <% if User.find(current_user.id).role == "Borrower" %>
-	<%= link_to 'Edit', edit_loan_path(@loan) %> |
-	<%= link_to 'Back', loans_path %>
+  <% if @loan.status == "Pending" %>
+	 <%= link_to 'Edit', edit_loan_path(@loan) %> |
+	 <%= link_to 'Back', loans_path %>
+  <% else %>
+    <%= link_to 'Repay', repay_loans_path(@loan) %> |
+    <%= link_to 'Back', loans_path %>
+  <% end %>
 <% end %>
 
 <% if User.find(current_user.id).role == "Lender" %>
-	<%= link_to 'Invest', edit_loan_path(@loan) %> |
-	<%= link_to 'Back', loans_path %>
+  <% if @loan.status == "Pending" %>
+    <%= link_to 'Invest', edit_loan_path(@loan) %> |
+    <%= link_to 'Back', loans_path %>
+  <% else %>
+    <%= link_to 'Back', loans_path %>
+  <% end %>
+
 <% end %>
