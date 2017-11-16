@@ -9,10 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <!-- Loading Logo -->
     <div class="splash">
       <div class="splash_logo">
         $iou
@@ -28,7 +29,9 @@
         </svg>
       </div>
     </div>
+    <!-- End Loading Logo -->
 
+    <!-- Tag Line / Form -->
     <div class="text">
       <p>Micro Loans.</p>
       <p>Made Easy.</p>
@@ -57,9 +60,13 @@
           <% end %>
         </div>
       </div>
+      <!-- End Tag Line / Form -->
+
       <!-- <div id='more-info'>
         <p>hi</p>
       </div> -->
+
+      <!-- More-info Scroll Down -->
       <link href='https://fonts.googleapis.com/css?family=Open+Sans|Maven+Pro:500' rel='stylesheet' type='text/css'>
       <a href="#">More Info</a>
       <section class="main">
@@ -67,8 +74,10 @@
       <span class="arrow"></span>
       <!--<span class="hint">scroll</span>-->
       </a>
+      <!-- More-info Scroll Down -->
 
-        <div class="content" id="content">
+      <!-- About us section 1 -->
+        <!-- <div class="content" id="content">
           <h3>About us</h3>
           <p>
             The purpose of this arrow demo is to indicate that there is further content down the page. While studies have generally shown that users <em>do, in fact,</em> scroll (thus killing the worries about page fold), it still has become somewhat fashionable to indicate scroll intent.
@@ -80,9 +89,295 @@
             The CSS
           </h2>
           <pre>
+          <p>INSIDE GREY BLOCK</p>
           </pre>
         </div>
+      </section> -->
+      <!--this div is the off page nav menu and shows up when you click the #nav-button -->
+      <!-- About us section 1 -->
+
+      <!-- About us section 2 -->
+      <!-- <section>
+      <div id="menu">
+      <ul id="menu-list">
+        <a href="#application" class="close-menu">
+          <li>APPLY NOW</li>
+        </a>
+        <a href="#how-it-works" class="close-menu">
+          <li>HOW IT WORKS</li>
+        </a>
+        <a href="#questions" class="close-menu">
+          <li>QUESTIONS</li>
+        </a>
+        </ul>
+      </div> -->
+
+      <!--contains nav bar -->
+      <!-- <nav>
+      <div class="container">
+        <a id="logo" href="#">
+          <img src="http://image.flaticon.com/icons/svg/172/172698.svg" />
+          <p>KIWI<span>PAYDAY</span></p>
+        </a>
+
+        <ul>
+          <a href="#application" class="close-menu">
+            <li>APPLY NOW</li>
+          </a>
+          <a href="#how-it-works" class="close-menu">
+            <li>HOW IT WORKS</li>
+          </a>
+          <a href="#questions" class="close-menu">
+            <li>QUESTIONS</li>
+          </a>
+          </ul>
+
+        <img id="hamburger" src="http://image.flaticon.com/icons/svg/130/130453.svg" />
+      </div>
+      </nav> -->
+      <!--contains header and button -->
+<!--
+      <div class="container column">
+        <h3 id="nz">New Zealand's Fastest</h3>
+        <h1 id="intro">CASH ADVANCE</h1> -->
+        <!--CHANGE THIS TO THE PATH THAT YOU PLACE THE CSS FILE
+      AND THEN PLACE IT IN YOUR HEAD. -->
+      <!-- <link rel="stylesheet" href="PATH/TO/CC-slider.css"> -->
+
+
+      <!-- PLACE THIS WHERE YOU WANT THE SLIDER SECTION TO BE. -->
+      <!-- <div class="row" id="slidaaa">
+      <div id="CC_slider-box">
+        <div id="CC_blue-bg">
+          <div class="CC_slider-row CC_flex">
+            <p id="amnt"><strong><span>Loan</span> Amnt</strong></p>
+            <div id="CC_slider-top" class="dragdealer">
+              <div id="CC_slider-top-handle" class="CC_flex handle"></div>
+            </div>
+            <div id="CC_var-box-top" class="CC_flex"></div>
+          </div>
+
+          <div class="CC_slider-row CC_flex">
+            <p id="term"><strong><span>Loan</span> Term</strong></p>
+            <div id="CC_slider-bottom" class="dragdealer">
+              <div id="CC_slider-bottom-handle" class="CC_flex handle"></div>
+            </div>
+            <div id="CC_var-box-bottom" class="CC_flex"></div>
+          </div>
+        </div>
+        <div id="calc">Pay as little as $100 a month</div>
+        <div id="calc2">Under $100/mo!</div>
+      </div>
+      </div> -->
+
+
+
+      <!-- THESE TWO SCRIPTS GO WITH YOUR OTHER SCRIPTS, DUH! -->
+<!--
+        <p id="intro-text">
+          <em>Quick and easy</em> application, <em></em> get fast payday loans and instant cash loans online and have your money in <strong>minutes</strong>!
+        </p>
+
+        <a href="#application">
+          <button class="call-to-action">
+            <img class="button-coin"src="https://bit.ly/2cKy5i3"/>
+            <span class="apply-now-span">APPLY NOW</span>
+          </button>
+        </a>
+        <h5 id="mobile-apply">Apply from your mobile device.</h5>
+      </div>
+
+
+      <section id="points-of-interest">
+      <div class="container">
+        <div class="point">
+          <img src="http://image.flaticon.com/icons/svg/189/189106.svg" />
+          <h4>APPLY IN MINUTES</h4>
+          <p>Simple application takes under 5 minutes! </p>
+        </div>
+        <div class="point">
+          <img src="http://image.flaticon.com/icons/svg/189/189706.svg" />
+          <h4>QUICK APPROVAL</h4>
+          <p>Our online proccess gets you approved fast!</p>
+        </div>
+        <div class="point">
+          <img src="http://image.flaticon.com/icons/svg/189/189093.svg" />
+          <h4>GET YOUR<br>CASH NOW</h4>
+          <p>Money in your bank account same day!</p>
+        </div>
+      </div>
       </section>
+
+      <section id="how-it-works">
+      <div class="container column">
+        <h3 class="section-title">How It Works</h3>
+        <ul id="steps">
+          <li class="main-step">
+            <h4 class="summary">Apply for a payday loan</h4>
+            <p class="show-inner-steps first">Learn more...</p>
+            <ol class="inner-steps first hidden">
+              <li class="step">
+                You fill out our secure online application form, followed by a confirmation email with your copy of the loan documents.
+              </li>
+              <li class="step">
+                You reply to this email confirming your email address to complete the application process.
+              </li>
+            </ol>
+          </li>
+          <li class="main-step">
+            <h4 class="summary">Get approved for a loan</h4>
+            <p class="show-inner-steps second">Learn more...</p>
+            <ol class="inner-steps second hidden">
+              <li class="step">
+                We receive your loan documents.
+              </li>
+              <li class="step">
+                We notify you by email if your loan is approved within 60 minutes of receiving your signed documents.
+              </li>
+            </ol>
+          </li>
+          <li class="main-step">
+            <h4 class="summary">Recieve your payday loan</h4>
+            <p class="show-inner-steps third">Learn more...</p>
+            <ol class="inner-steps third hidden">
+
+              <li class="step">
+                We approve your loan.
+              </li>
+              <li class="step">
+                We transfer the money to your bank account.
+              </li>
+            </ol>
+          </li>
+        </ul>
+      </div>
+      </section>
+
+      <section id="application">
+      <div class="container column">
+        <h1 id="title">Apply Now</h1>
+        <p id="description">
+          Simply fill out our secure payday loan application below and you could have your loan approved today! This is a no-obligation online application process. You can apply for as many combinations of repayment amounts and dates as you like, and then decide on the loan that best suits your financial situation and ability to pay back.
+        </p><br/>
+        <div id="form">
+          <input name="first-name" placeholder="first name" />
+          <input name="last-name" placeholder="last name" />
+          <input name="date of birth" placeholder="date of birth" />
+          <input name="driverlicense" placeholder="driver license number #." />
+          <input name="licensevers" placeholder="license ver. #" />
+          <input name="email-address" placeholder="email address" />
+          <input name="telephone" placeholder="telephone #" />
+          <input name="address" placeholder="address" />
+          <input name="zip" placeholder="zip" />
+          <input name="city" placeholder="city" />
+          <a href="#application">
+            <button id="submit" class="call-to-action">
+            <img class=" button-coin"src="https://bit.ly/2cKy5i3"/>
+            <span class="apply-now-span">APPLY NOW</span>
+          </button>
+          </a>
+        </div>
+      </div>
+      </section>
+
+      <section id="questions">
+      <div class="container column">
+        <h3 class="section-title">Questions</h3>
+        <ul id="topics">
+          <li class="topic">
+            <h4 class="summary">Before Applying for Payday Loans and Cash Loans</h4>
+            <p class="show-questions first">See FAQ</p>
+            <ol class="questions first hidden">
+              <li class="question">
+                <em>Who can apply for a fast and quick payday loan, cash loan and text loan?</em> In order to apply for our loans, you must be a minimum age of 18 years. You must also be a citizen or permanent resident of New Zealand. You must hold a New
+                Zealand Drivers License. You need to have a mobile phone and the account must be in your name. The bank account must be a personal account in your name. Collateral or guarantors are not required.
+              </li>
+              <li class="question">
+                <em>How much are the payday and cash loan processing fees? What about repayment period?</em> You can use our loan calculator to see how the fees change with respect to the loan amount and repayment period. There are no additional fees or hidden
+                costs.
+              </li>
+              <li class="question">
+                <em>How soon can I get a loan decision?</em> You will be informed of a decision during normal business hours. At peak times, processing may take a little more time.
+              </li>
+            </ol>
+          </li>
+          <li class="topic">
+            <h4 class="summary">Application Process for Payday Loans and Cash Loans</h4>
+            <p class="show-questions second">See FAQ</p>
+            <ol class="questions second hidden">
+              <li class="question">
+                <em>How do I send in my fast and quick loan application?</em> A loan application can be sent in two different ways: either via the Internet (first-time customers and existing customers) or sending a text message (existing customers only).
+                Be sure to read the Terms and Conditions before sending your loan application. We receive your loan documents.
+              </li>
+              <li class="question">
+                <em>How much does it cost to send a short, fast and quick text loan application?</em> The only cost for applying via text loan is the standard mobile messaging charge from your mobile provider. Ferratum does not charge any additional fees
+                for applying by text message.
+              </li>
+              <li class="question">
+                <em>My husband and I have a joint bank account. I have an open payday loan and cash loan. Can my spouse apply for a loan even if it is the same account number?</em> Unfortunately, a spouse can not apply for a loan, because no more than one
+                open loan can be granted to the same account. Spouses, of course, can apply for a loan when you have paid off your loan. Please allow one additional business day after paying off the loan before applying.
+              </li>
+            </ol>
+          </li>
+          <li class="topic">
+            <h4 class="summary">After Applying for Payday Loans and Cash Loans</h4>
+            <p class="show-questions third">See FAQ</p>
+            <ol class="questions third hidden">
+
+              <li class="question">
+                <em>  How quickly are the payday loans and cash loans and text loans paid into my account?</em> When you send a confirmation message “YES” accepting the loan decision, the loan amount is paid to your bank account within a few minutes. Same
+                Day Cleared Funds are only transferred during business hours- Monday to Friday 9:00am to 4:30pm - and depending on the customer's bank systems.
+              </li>
+              <li class="question">
+                <em> How do I pay back the payday loan and  cash loan?</em> The invoice will be delivered to you by email within a week of granting the loan. You must pay the loan by the due date as stated on the invoice.
+              </li>
+              <li class="question">
+                <em>I've paid off the old payday loan, cash loan and text loan today. When can I apply for a new  loan?</em> Payments normally take one business day to clear and be shown in your account. Once a payment is credited to your account, you can
+                apply for a new loan.
+              </li>
+              <li class="question">
+                <em>Can I apply for new payday loans, cash loans and text loans, although my previous loan is still open?</em> This is not possible, because you cannot have more than one loan at a time. You can apply for a new loan only when the old loan
+                are paid back. Please allow one additional business day after paying off the loan before applying. Payments normally take one business day to clear and be shown in your account.
+            </ol>
+            </li>
+            <li class="topic">
+              <h4 class="summary">Late-repayment, Non-repayment, or Full-prepayment</h4>
+              <p class="show-questions fourth">See FAQ</p>
+              <ol class="questions fourth hidden">
+                <li class="question">
+                  <em>Late Repayment: What If you do not repay back your loan on the agreed due date or 30 days after the agreed due date?</em> If you are late with your repayment, our collection team will contact you to discuss your debt repayment plan.
+                  We will continue to collect your outstanding loan until you meet your commitments in full. If you do not provide your debt repayment plan that is satisfied by us or if we cannot recover your outstanding loan over a reasonable period of time;
+                  under New Zealand's full authority, we may pass your debt file after reviewing your case fully to our professional collection agency that will contact you in order to collect your outstanding loan on behalf of us. This may be reported to
+                  credit rating agencies and it may affect your personal credit rating as well.
+                </li>
+                <li class="question">
+                  <em>Full Prepayment: What if you prepay your outstanding loan?</em> You may pay the full prepayment (as detailed below) pertaining to a loan at any time before the final payment is due, without any penalty. The full prepayment is, at any
+                  time, the aggregate principal amount of a loan outstanding at that time together with any accrued unpaid interest, fees and all cost and other amounts then due and payable by you to us in connection with such loan
+                </li>
+                <li class="question">
+                  <em>Non-Repayment: What if you deny repaying your outstanding loan?</em> We may pass your debt file after reviewing your case fully to our professional collection agencies under New Zealand's full authority. Soon after we pass it to them,
+                  they will contact you to collect your outstanding loan on behalf of us. Therefore, you do not need to contact us anymore.
+              </ol>
+              </li>
+              <li class="topic">
+                <h4 class="summary">If Unexpected Things Happen After Receiving Your Loan?</h4>
+                <p class="show-questions fifth">See FAQ</p>
+                <ol class="questions fifth hidden">
+
+                  <li class="question">
+                    If unexpected things happene to you after receiving your loan, please contact us immediately to discuss your hard circumstances. We are ready to listen to your unexpected circumstances and will try to do our best to help you find an arrangement that you
+                    can repay your loan.
+                  </li>
+                </ol>
+              </li>
+        </ul>
+      </div>
+      </section> -->
+    <!-- End About us section 2 -->
+    <!--End More About Us  -->
+
+    <!-- NOTHING PAST THIS LINE! -->
+    </div>
     </div>
     </div>
   </body>

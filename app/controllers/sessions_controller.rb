@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
 
   def splashpage
-    render layout: false 
+    render layout: false
+  end
+
+  def profilepage
+    # render layout: false
   end
 
   def new
