@@ -1,6 +1,17 @@
 <h1>Editing Loan</h1>
 
+<% if User.find(current_user.id).role == "Borrower" %>
 <%= render 'form', loan: @loan %>
+<% end %>
+
+<% if User.find(current_user.id).role == "Lender" %>
+	<%= form_for @loan do |form| %>	
+	    <%= form.hidden_field(:lender_id, :value => current_user.id) %>
+	    <%= form.hidden_field(:status, :value => "Active") %>
+
+	    <%= form.submit "Invest" %>
+	<% end %>
+<% end %>
 
 <%= link_to 'Show', @loan %> |
 <%= link_to 'Back', loans_path %>

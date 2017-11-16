@@ -1,14 +1,23 @@
+<!-- ADD JQUERY FOR NAV TO WORK -->
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>FinalPitchApp</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  
+ <script src="https://cdn.jsdelivr.net/walkway/0.0.1/walkway.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 
     <%= yield %>
   </body>

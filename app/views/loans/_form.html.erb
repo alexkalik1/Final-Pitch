@@ -1,32 +1,37 @@
-<%= form_with(model: loan, local: true) do |form| %>
-  <% if loan.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="wall">
+                <img id="logo" src="https://trello-attachments.s3.amazonaws.com/5a00dc322b3c3a3c721a6912/5a00e674cdb313f96d9cdb2c/539b280fb58aee03ce2fe36c62fdae39/Logaster-13-vk-sharedImage-1000px.png"
+                    alt="">
+                  <%= form_with(model: loan, local: true, class: "all-form") do |form| %>
+                    <% if loan.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
 
-      <ul>
-      <% loan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+                        <ul>
+                        <% loan.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
 
-  <div class="field">
-    <%= form.label :amount_in_cents %>
-    <%= form.number_field :amount_in_cents, id: :loan_amount_in_cents %>
+                    <div class="field">
+                      <%= form.label :amount_in_cents %>
+                      <%= form.number_field :amount_in_cents, class: 'form-control' %>
+                    </div>
+
+                    <div class="field">
+                      <%= form.label :body %>
+                      <%= form.text_area :body, class: 'form-control' %>
+                    </div>
+
+                    <div class="actions">
+                      <%= form.submit %>
+                    </div>
+                  <% end %>
+        </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body, id: :loan_body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status, id: :loan_status %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

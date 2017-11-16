@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :check_user, only: [:show]
 
   # GET /users
   # GET /users.json
@@ -10,6 +11,28 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @lender_loans = Loan.where(lender_id: current_user.id)
+    @p_count = 0 #count of pending loans
+    @a_count = 0 #count of active loans
+    @c_count = 0 #count of completed loans
+
+    @lender_loans.each do |pending|
+      if pending.status == "Pending"
+        @p_count = @p_count + 1
+      end
+    end
+
+    @lender_loans.each do |active|
+      if active.status == "Active"
+        @a_count = @a_count + 1
+      end
+    end
+
+    @lender_loans.each do |completed|
+      if completed.status == "Completed"
+        @c_count = @c_count + 1
+      end
+    end
   end
 
   # GET /users/new
@@ -28,7 +51,23 @@ class UsersController < ApplicationController
 
     return render action: 'new' unless @user.save
 
-    redirect_to root_path, notice: 'Created user'
+    require 'dwolla_v2'
+
+    request_body = {
+      :firstName => @user.first_name,
+      :lastName => @user.last_name,
+      :email => @user.email,
+      :type => "personal",
+      :address1 => @user.address,
+      :city => @user.city,
+      :state => @user.state,
+      :postalCode => @user.postal_code,
+      :dateOfBirth => @user.date_of_birth,
+      :ssn => @user.last_four_of_ssn
+    }
+    customer = $dwolla.auths.client.post "customers", request_body
+
+    redirect_to user_path(@user), notice: 'Created user'
   end
 
   # PATCH/PUT /users/1
@@ -61,8 +100,14 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    # def check_user
+    #   if current_user.id != @user
+    #     redirect_to root_path
+    #   end
+    # end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :role, :username, :password, :password_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :email, :role, :username, :password, :password_confirmation, :address, :city, :state, :postal_code, :date_of_birth, :last_four_of_ssn)
     end
 end

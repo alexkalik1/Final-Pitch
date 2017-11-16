@@ -1,4 +1,9 @@
 class SessionsController < ApplicationController
+
+  def splashpage
+    render layout: false 
+  end
+
   def new
   end
 
@@ -8,7 +13,7 @@ class SessionsController < ApplicationController
     return render action: 'new' unless @user
 
     session[:user_id] = @user.id
-    redirect_to loans_path
+    redirect_to user_path(@user)
   end
 
   def destroy
