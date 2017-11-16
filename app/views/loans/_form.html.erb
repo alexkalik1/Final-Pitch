@@ -18,12 +18,12 @@
                     <% end %>
 
                     <div class="field">
-                      <%= form.label :amount_in_cents %>
-                      <%= form.number_field :amount_in_cents, class: 'form-control' %>
+                      <%= form.label :amount_in_cents, "Amount" %>
+                      <%= form.select :amount_in_cents, options_for_select({"$5.00" => 500, "$10.00" => 1000, "$15.00" => 1500, "$20.00" => 2000, "$25.00" => 2500, "$30.00" => 3000}), class: 'form-control' %>
                     </div>
 
                     <div class="field">
-                      <%= form.label :body %>
+                      <%= form.label :body, "Description" %>
                       <%= form.text_area :body, class: 'form-control' %>
                     </div>
 

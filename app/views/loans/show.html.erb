@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
 <%= @invester.email %>
 <p>
-  <strong>Amount in cents:</strong>
-  <%= @loan.amount_in_cents %>
+  <strong>Amount:</strong>
+  <%= sprintf("$%.2f", (@loan.amount_in_cents/100)) %>
 </p>
 
 <p>
-  <strong>Body:</strong>
+  <strong>Description:</strong>
   <%= @loan.body %>
 </p>
 
@@ -24,4 +24,3 @@
 	<%= link_to 'Invest', edit_loan_path(@loan) %> |
 	<%= link_to 'Back', loans_path %>
 <% end %>
-
