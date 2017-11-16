@@ -35,7 +35,7 @@
             <% if loan.user_id == current_user.id && User.find(current_user.id).role == "Borrower" && loan.status == "Pending" %>
                       <tr>
                         <td><%= sprintf("$%.2f", (loan.amount_in_cents/100)) %></td>
-                        <td><%= sprintf("$%.2f", (loan.tip_in_cents/100)) %></td>
+                        <td><%= sprintf("$%.2f", (loan.tip_in_cents.to_f/100)) %></td>
                         <td><%= loan.body %></td>
                         <td><%= loan.status %></td>
                         <!-- <td>User.find(loan.user_id).first_name</td> -->
@@ -73,7 +73,7 @@
             <% if loan.user_id == current_user.id && User.find(current_user.id).role == "Borrower" && loan.status == "Active" %>
                       <tr>
                         <td><%= sprintf("$%.2f", (loan.amount_in_cents/100)) %></td>
-                        <td><%= sprintf("$%.2f", (loan.tip_in_cents/100)) %></td>
+                        <td><%= sprintf("$%.2f", (loan.tip_in_cents.to_f/100)) %></td>
                         <td><%= loan.body %></td>
                         <td><%= loan.status %></td>
                         <!-- <td>User.find(loan.user_id).first_name</td> -->
@@ -141,7 +141,7 @@
             <% if User.find(current_user.id).role == "Lender" && loan.status == "Pending" %>
                 <tr>
                   <td><%= sprintf("$%.2f", (loan.amount_in_cents/100)) %></td>
-                  <td><%= sprintf("$%.2f", (loan.tip_in_cents/100)) %></td>
+                  <td><%= sprintf("$%.2f", (loan.tip_in_cents.to_f/100)) %></td>
                   <td><%= loan.body %></td>
                   <td><%= loan.user.first_name %></td>
                   <td><%= loan.status %></td>

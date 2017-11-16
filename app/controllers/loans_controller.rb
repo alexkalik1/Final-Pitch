@@ -113,6 +113,8 @@ class LoansController < ApplicationController
 
         amount = "#{@loan.amount_in_cents/100}"
 
+        client.send_money(from, to, amount)
+
       elsif current_user.role == "Borrower" && @loan.status == "Closed"
 
         # Get borrower href
@@ -121,10 +123,12 @@ class LoansController < ApplicationController
         to = client.find_url(invester.email)
 
         full_amount = @loan.tip_in_cents + @loan.amount_in_cents
-        amount = "#{(full_amount/100)}"
+        amount = "#{(full_amount.to_f/100)}"
+
+        client.send_money(from, to, amount)
 
       end
-      client.send_money(from, to, amount)
+      # client.send_money(from, to, amount)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

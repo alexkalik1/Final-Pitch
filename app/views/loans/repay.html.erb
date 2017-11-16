@@ -1,11 +1,11 @@
 <h1>Repayment</h1>
 
-<% tip = sprintf("$%.2f", (@loan.tip_in_cents/100)) %>
+<% tip = sprintf("$%.2f", (@loan.tip_in_cents.to_f/100)) %>
 <% og_loan = sprintf("$%.2f", (@loan.amount_in_cents/100)) %>
 
 <% full_amount = @loan.tip_in_cents + @loan.amount_in_cents %>
 
-<% total = sprintf("$%.2f", (full_amount/100)) %>
+<% total = sprintf("$%.2f", (full_amount.to_f/100)) %>
 
 <p>
   Loan Amount: <%= og_loan %>
@@ -14,6 +14,13 @@
 <p>
   Guaranteed Tip: <%= tip %>
 </p>
+
+<%= form_for @loan do |form| %>
+
+    <%= form.label :tip_in_cents, "Add to Tip?" %>
+    <%= form.select :tip_in_cents, options_for_select({"$0.00" => 000+@loan.tip_in_cents, "$1.50" => 150+@loan.tip_in_cents, "$3.00" => 300+@loan.tip_in_cents, "$4.50" => 450+@loan.tip_in_cents}), class: 'form-control' %>
+    <%= form.submit "Add To Tip" %>
+<% end %>
 
 <p>
   Total: <%= total %>

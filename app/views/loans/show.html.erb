@@ -7,7 +7,7 @@
 
 <p>
   <strong>Guaranteed Tip:</strong>
-  <%= sprintf("$%.2f", (@loan.tip_in_cents/100)) %>
+  <%= sprintf("$%.2f", (@loan.tip_in_cents.to_f/100)) %>
 </p>
 
 <p>
