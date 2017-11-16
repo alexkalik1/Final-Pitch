@@ -23,6 +23,11 @@
                     </div>
 
                     <div class="field">
+                      <%= form.label :tip_in_cents, "Guaranteed Tip" %>
+                      <%= form.select :tip_in_cents, options_for_select({"$1.00" => 100, "$2.00" => 200, "$3.00" => 300, "$4.00" => 400, "$5.00" => 500, "$6.00" => 600, "$7.00" => 700, "$8.00" => 800, "$9.00" => 900, "$10.00" => 1000}), class: 'form-control' %>
+                    </div>
+
+                    <div class="field">
                       <%= form.label :body, "Description" %>
                       <%= form.text_area :body, class: 'form-control' %>
                     </div>
