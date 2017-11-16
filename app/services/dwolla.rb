@@ -3,8 +3,8 @@ require 'dwolla_v2'
 class Dwolla
 
   def initialize
-    app_key = "Ip5J5CeMF4bxgtmK9Kh8jbyUjbZzBzSuHBv21L5SUlkGrUPAT9"
-    app_secret = "DOxILUSfnrmZMtvVe6tf8i9ZCoHRRxNg33NwsfAlVeQlbJmTdG"
+    app_key = "kq61IRSbsZTNARRHFx4ClXeChJPiPpbRNvz54rHYhfJcUQy3kl"
+    app_secret = "qlpR2k85I5IFT0K5FMw7trj1xAF4oDnBE3aF9a2QNDni9CoX3O"
     @dwolla = DwollaV2::Client.new(key: app_key, secret: app_secret) do |config|
       config.environment = :sandbox # optional - defaults to production
     end
