@@ -122,7 +122,7 @@
     <div class="container">
       <h2 id="loan_index">Pending <span class="badge"><%= @p_count %></span></h2>
 
-      <div class="table-responsive">
+      <div class="table-responsive table-striped">
       <table class="table">
         <thead>
           <tr>
@@ -161,4 +161,6 @@
 
 <br>
 
-<p id="link_to" /><%= link_to 'New Loan', new_loan_path %></p>
+<% if current_user.role == "Borrower" %>
+  <p id="link_to" /><%= link_to 'New Loan', new_loan_path %></p>
+<% end %>

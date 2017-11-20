@@ -15,6 +15,10 @@ h1 {
   font-weight: bold;
 }
 
+h2 {
+  text-align: center;
+}
+
 p#type_user {
   text-align: center;
 }
