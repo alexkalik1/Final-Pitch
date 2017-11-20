@@ -20,7 +20,7 @@ p#type_user {
 }
 
 input[type="submit"] {
-  background-color: #990099;
+  background-color: #32ad32;
   margin-bottom: 15px;
   margin-left: 10px;
   font-weight: bold;
@@ -44,9 +44,26 @@ p#link_to {
 
 }
 a {
-  color: #990099;
+  color: #32ad32;
 }
 
 span.badge {
-  background-color: #990099;
+  background-color: #32ad32;
+}
+
+p.back {
+  text-align: center;
+}
+
+div#create_loan {
+  text-align: center;
+  margin-top: 10px;
+}
+
+div#create_loan input {
+  color: white;
+}
+
+select {
+  border: 1px grey solid;
 }
