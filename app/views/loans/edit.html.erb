@@ -1,17 +1,24 @@
-<h1>Editing Loan</h1>
+<h1>Current Loan</h1>
+
+<ul id="current_loan">
+	<li>Amount: <%= sprintf("$%.2f", (@loan.amount_in_cents/100)) %></li>
+	<li>Guaranteed Tip: <%= sprintf("$%.2f", (@loan.tip_in_cents.to_f/100)) %></li>
+	<li>Description: <%= @loan.body %></li>
+	<li>Requester: <%= @loan.user.first_name %></li>
+	<li>Status: <%= @loan.status %></li>
+</ul>
 
 <% if User.find(current_user.id).role == "Borrower" %>
-<%= render 'form', loan: @loan %>
+	<%= render 'form', loan: @loan %>
 <% end %>
 
 <% if User.find(current_user.id).role == "Lender" %>
-	<%= form_for @loan do |form| %>
+		<%= form_for @loan do |form| %>
 	    <%= form.hidden_field(:lender_id, :value => current_user.id) %>
 	    <%= form.hidden_field(:status, :value => "Active") %>
 
 	    <%= form.submit "Invest" %>
-	<% end %>
+		<% end %>
 <% end %>
 
-<%= link_to 'Show', @loan %> |
-<%= link_to 'Back', loans_path %>
+<%= link_to 'Show', @loan %> | <%= link_to 'Back', loans_path %>

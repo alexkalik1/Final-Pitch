@@ -1,3 +1,52 @@
 input.form-control {
   text-align: center;
 }
+
+ul#current_loan {
+  list-style: none;
+  text-align: left;
+  padding-left: 10px !important;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p#type_user {
+  text-align: center;
+}
+
+input[type="submit"] {
+  background-color: #990099;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  background-color:
+}
+
+a {
+  margin-left: 10px;
+}
+
+h2#loan_index {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+p#link_to {
+  text-align: center;
+
+}
+a {
+  color: #990099;
+}
+
+span.badge {
+  background-color: #990099;
+}

@@ -16,9 +16,9 @@
 
   <% if @p_count > 0 && User.find(current_user.id).role == "Borrower" %>
     <div class="container">
-      <h2>Pending <span class="badge"><%= @p_count %></span></h2>
+      <h2 id="loan_index">Pending <span class="badge"><%= @p_count %></span></h2>
 
-      <div class="table">
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -53,9 +53,9 @@
 
   <% if @a_count > 0 %>
     <div class="container">
-      <h2>Active <span class="badge"><%= @a_count %></span></h2>
+      <h2 id="loan_index">Active <span class="badge"><%= @a_count %></span></h2>
 
-      <div class="table">
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -120,9 +120,9 @@
 
 <% if @p_count > 0 && User.find(current_user.id).role == "Lender" %>
     <div class="container">
-      <h2>Pending <span class="badge"><%= @p_count %></span></h2>
+      <h2 id="loan_index">Pending <span class="badge"><%= @p_count %></span></h2>
 
-      <div class="table">
+      <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
@@ -161,4 +161,4 @@
 
 <br>
 
-<%= link_to 'New Loan', new_loan_path %>
+<p id="link_to" /><%= link_to 'New Loan', new_loan_path %></p>
